@@ -18,6 +18,8 @@ export default {
     AppNav
   },
   mounted() {
+    window.nudgify = {data: {"cart":{"amount":null,"currency":null}}};
+    
     (function(w){
         var k="nudgify",n=w[k]||(w[k]={});
         n.uuid="68ed61a2-868d-466a-9e92-dc55fd931ff0";
