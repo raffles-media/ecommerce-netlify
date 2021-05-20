@@ -11,14 +11,18 @@
 <script>
 import AppFooter from "~/components/AppFooter.vue";
 import AppNav from "~/components/AppNav.vue";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
     AppFooter,
     AppNav
   },
+  computed: {
+    ...mapGetters(["cartTotal"])
+  },
   mounted() {
-    window.nudgify = {data: {"cart":{"amount":null,"currency":null}}};
+    window.nudgify = {data: {"cart":{"amount":this.cartTotal,"currency":"USD"}}};
     
     (function(w){
         var k="nudgify",n=w[k]||(w[k]={});
