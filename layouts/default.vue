@@ -29,7 +29,7 @@ export default {
     })(window);
     
     window.addEventListener('cart-updated', (event) => {
-      if (window.nudgify and window.nudgify.cart) {
+      if (window.nudgify && window.nudgify.cart) {
         window.nudgify.cart(event.detail)
       }
     })
