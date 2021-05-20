@@ -39,12 +39,14 @@ export const mutations = {
   clearCart: state => {
     //this clears the cart
     (state.cart = []), (state.cartUIStatus = "idle");
+    notifyCart(state)
   },
   addToCart: (state, payload) => {
     let itemfound = state.cart.find(el => el.id === payload.id);
     itemfound
       ? (itemfound.quantity += payload.quantity)
       : state.cart.push(payload)
+    notifyCart(state)
   },
    setClientSecret: (state, payload) => {
     state.clientSecret = payload;
@@ -52,15 +54,18 @@ export const mutations = {
   addOneToCart: (state, payload) => {
     let itemfound = state.cart.find(el => el.id === payload.id)
     itemfound ? itemfound.quantity++ : state.cart.push(payload)
+    notifyCart(state)
   },
   removeOneFromCart: (state, payload) => {
     let index = state.cart.findIndex(el => el.id === payload.id)
     state.cart[index].quantity
       ? state.cart[index].quantity--
       : state.cart.splice(index, 1)
+    notifyCart(state)
   },
   removeAllFromCart: (state, payload) => {
     state.cart = state.cart.filter(el => el.id !== payload.id)
+    notifyCart(state)
   }
 };
 
@@ -89,4 +94,13 @@ export const actions = {
       console.log("error", e);
     }
   }
+};
+
+const notifyCart = (state) => {
+  window.dispatchEvent = new CustomEvent('cart-updated', {
+    cart: {
+      amount: getters.cartTotal(state),
+      currency: 'USD'
+    } 
+  });
 };
