@@ -27,6 +27,12 @@ export default {
         s.charset="utf-8";
         d.getElementsByTagName("head")[0].appendChild(s)
     })(window);
+    
+    window.addEventListener('cart-updated', (event) => {
+      if (window.nudgify and window.nudgify.cart) {
+        window.nudgify.cart(event.detail)
+      }
+    })
   }
 };
 </script>
