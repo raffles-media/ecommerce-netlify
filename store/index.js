@@ -97,10 +97,7 @@ export const actions = {
 };
 
 const notifyCart = (state) => {
-  window.dispatchEvent = new CustomEvent('cart-updated', {
-    cart: {
-      amount: getters.cartTotal(state),
-      currency: 'USD'
-    } 
-  });
+  window.dispatchEvent(
+    new CustomEvent('cart-updated', { cart: { amount: getters.cartTotal(state), currency: 'USD' } })
+  );
 };
