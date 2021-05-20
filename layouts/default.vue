@@ -16,6 +16,17 @@ export default {
   components: {
     AppFooter,
     AppNav
+  },
+  mounted() {
+    (function(w){
+        var k="nudgify",n=w[k]||(w[k]={});
+        n.uuid="68ed61a2-868d-466a-9e92-dc55fd931ff0";
+        var d=document,s=d.createElement("script");
+        s.src="https://pixel-rc.nudgify.com/pixel.js";
+        s.async=1;
+        s.charset="utf-8";
+        d.getElementsByTagName("head")[0].appendChild(s)
+    })(window);
   }
 };
 </script>
